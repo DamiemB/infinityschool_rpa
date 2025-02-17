@@ -4,7 +4,7 @@ Pequeno projeto de automação, principal objeteivo é melhorar minha propria fa
 
 O programa deve;
 
--[ ] Acessar o web app da Infinity school.
--[ ] Logar na conta de acordo com os dados passados pelo usuario
--[ ] Acessar a aba de "Marcar Presença" e confirma presença no curso principal
+*Acessar o web app da Infinity school.
+*Logar na conta de acordo com os dados passados pelo usuario
+*Acessar a aba de "Marcar Presença" e confirma presença no curso principal
 
