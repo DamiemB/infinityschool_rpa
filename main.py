@@ -13,6 +13,12 @@ def main():
         "aniver" : ""
     }
     driver = webdriver.Firefox()
+
+    def bruteforce():
+        token_brute_force = 9999
+        while token_brute_force != 0:
+            token_brute_force -= 1
+
     
     def user_input():
         credenciais['cpf'] = input('Digite seu cpf; ')
@@ -32,10 +38,27 @@ def main():
         senha.send_keys( aniversario + Keys.ENTER)
         sleep(2)
     
-    def marcaPresença():
+    def acessandoPresenca():
         botao = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(), 'Marcar presença')]")))
         botao.click()
         sleep(2)
+
+    def marcandoPresenca():
+        botao2 = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, "//button[contains(text(), 'Presença aula do curso')]")))
+        botao2.click()
+        sleep(2)
+    
+    def validacaotoken():
+        token = driver.find_element(By.NAME, "token_validacao")
+        token.send_keys("6666" + Keys.ENTER)
+        validation_message = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID, "validation-message")))
+        message_text = validation_message.text
+        print(f'a mensagem de texto é >>> {message_text}')
+        if message_text == "Token inválido!":
+            print("Comparação de token invalida")
+        else:
+            print("comparação de token valida")
+
 
     system('clear')
     user_input()
@@ -44,9 +67,14 @@ def main():
     print('passou pela acessando site')
     login(credenciais["cpf"], credenciais["aniver"])
     print('passou pelo login')
-    marcaPresença()
+    acessandoPresenca()
     print('passou pela presença')
-    system('pause')
+    marcandoPresenca()
+    print('Passou no marcando presença')
+    validacaotoken()
+    print('Passou Token')
+    sleep(30)
+    
     
     driver.quit() 
 main()
